@@ -20,22 +20,38 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('portafolio','portafolio.index')->name('portafolio');
+// Route::view('portafolio','portafolio.index')->name('portafolio');
 
-Route::get('portafolio',[PortafolioController::class,'index'])->name('portafolio');
+// Route::get('portafolio',[PortafolioController::class,'index'])->name('portafolio');
 
-Route::get('portafolio/create',[PortafolioController::class,'create'])->name('create');
+// Route::get('portafolio/create',[PortafolioController::class,'create'])->name('create');
 
-Route::post('portafolio',[PortafolioController::class,'store'])->name('store');
+// Route::post('portafolio',[PortafolioController::class,'store'])->name('store');
 
-Route::get('portafolio/{id}',[PortafolioController::class,'show'])->name('show');
+// Route::get('portafolio/{id}',[PortafolioController::class,'show'])->name('show');
 
-Route::get('portafolio/edit/{id}',[PortafolioController::class,'edit'])->name('edit');
+// Route::get('portafolio/edit/{id}',[PortafolioController::class,'edit'])->name('edit');
 
-Route::put('portafolio/{portafolio}',[PortafolioController::class,'update'])->name('update');
+// Route::put('portafolio/{portafolio}',[PortafolioController::class,'update'])->name('update');
 
-Route::delete('portafolio/{portafolio}',[PortafolioController::class,'destroy'])->name('destroy');
+// Route::delete('portafolio/{portafolio}',[PortafolioController::class,'destroy'])->name('destroy');
+
+
+Route::get('portafolio',[PortafolioController::class,'index'])->name('portafolio')->middleware('auth');
+
+Route::get('portafolio/create',[PortafolioController::class,'create'])->name('create')->middleware('auth');
+
+Route::post('portafolio',[PortafolioController::class,'store'])->name('store')->middleware('auth');
+
+Route::get('portafolio/{id}',[PortafolioController::class,'show'])->name('show')->middleware('auth');
+
+Route::get('portafolio/edit/{id}',[PortafolioController::class,'edit'])->name('edit')->middleware('auth');
+
+Route::put('portafolio/{portafolio}',[PortafolioController::class,'update'])->name('update')->middleware('auth');
+
+Route::delete('portafolio/{portafolio}',[PortafolioController::class,'destroy'])->name('destroy')->middleware('auth');
+
 
 
